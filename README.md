@@ -1,92 +1,75 @@
 # libcaesium_dart
 
-A new Flutter FFI plugin project.
+A Flutter FFI plugin for [libcaesium](https://github.com/Lymphatus/libcaesium), a powerful image compression library written in Rust.
+
+## About
+
+libcaesium_dart provides Dart bindings for the libcaesium library, allowing Flutter developers to easily integrate high-performance image compression capabilities into their applications. This project uses [flutter_rust_bridge](https://github.com/fzyzcjy/flutter_rust_bridge) to generate the FFI bindings.
+
+## Features
+
+- Compress JPEG, PNG, and WebP images
+- Maintain image quality while reducing file size
+- Cross-platform support (iOS, Android, Windows, macOS, Linux)
+- Easy integration with Flutter projects
+
+## Project Structure
+
+- `rust/`: Contains the Rust source code for the FFI wrapper.
+- `lib/`: Contains the Dart code that defines the API of the plugin.
 
 ## Getting Started
 
-This project is a starting point for a Flutter
-[FFI plugin](https://flutter.dev/to/ffi-package),
-a specialized package that includes native code directly invoked with Dart FFI.
-
-## Project structure
-
-This template uses the following structure:
-
-* `src`: Contains the native source code, and a CmakeFile.txt file for building
-  that source code into a dynamic library.
-
-* `lib`: Contains the Dart code that defines the API of the plugin, and which
-  calls into the native code using `dart:ffi`.
-
-* platform folders (`android`, `ios`, `windows`, etc.): Contains the build files
-  for building and bundling the native code library with the platform application.
-
-## Building and bundling native code
-
-The `pubspec.yaml` specifies FFI plugins as follows:
+To use libcaesium_dart in your Flutter project, add it as a dependency in your `pubspec.yaml` file:
 
 ```yaml
-  plugin:
-    platforms:
-      some_platform:
-        ffiPlugin: true
+dependencies:
+  libcaesium_dart: ^0.1.0  # Replace with the latest version
 ```
 
-This configuration invokes the native build for the various target platforms
-and bundles the binaries in Flutter applications using these FFI plugins.
+Then, import and use the library in your Dart code:
 
-This can be combined with dartPluginClass, such as when FFI is used for the
-implementation of one platform in a federated plugin:
+```dart
+import 'package:libcaesium_dart/libcaesium_dart.dart';
 
-```yaml
-  plugin:
-    implements: some_other_plugin
-    platforms:
-      some_platform:
-        dartPluginClass: SomeClass
-        ffiPlugin: true
+// Use the library functions here
 ```
 
-A plugin can have both FFI and method channels:
+## Usage
 
-```yaml
-  plugin:
-    platforms:
-      some_platform:
-        pluginClass: SomeName
-        ffiPlugin: true
+Here's a basic example of how to use the libcaesium_dart plugin to compress an image:
+
+```dart
+import 'package:libcaesium_dart/libcaesium_dart.dart';
+
+Future<void> compressImage() async {
+  await compress(
+    inputPath: 'path/to/input/image.jpg',
+    outputPath: 'path/to/output/image.jpg',
+    quality: 80,
+    pngOptimizationLevel: 3,
+    keepMetadata: true,
+    optimize: true,
+  );
+}
 ```
 
-The native build systems that are invoked by FFI (and method channel) plugins are:
+For more detailed usage examples, please refer to the `example` folder in the repository.
 
-* For Android: Gradle, which invokes the Android NDK for native builds.
-  * See the documentation in android/build.gradle.
-* For iOS and MacOS: Xcode, via CocoaPods.
-  * See the documentation in ios/libcaesium_dart.podspec.
-  * See the documentation in macos/libcaesium_dart.podspec.
-* For Linux and Windows: CMake.
-  * See the documentation in linux/CMakeLists.txt.
-  * See the documentation in windows/CMakeLists.txt.
+## Building and Bundling Native Code
 
-## Binding to native code
+This project is configured as an FFI plugin. The native build systems are automatically invoked for the target platforms when building your Flutter application.
 
-To use the native code, bindings in Dart are needed.
-To avoid writing these by hand, they are generated from the header file
-(`src/libcaesium_dart.h`) by `package:ffigen`.
-Regenerate the bindings by running `dart run ffigen --config ffigen.yaml`.
+## Contributing
 
-## Invoking native code
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-Very short-running native functions can be directly invoked from any isolate.
-For example, see `sum` in `lib/libcaesium_dart.dart`.
+## License
 
-Longer-running functions should be invoked on a helper isolate to avoid
-dropping frames in Flutter applications.
-For example, see `sumAsync` in `lib/libcaesium_dart.dart`.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Flutter help
+## Acknowledgements
 
-For help getting started with Flutter, view our
-[online documentation](https://docs.flutter.dev), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This project is based on [libcaesium](https://github.com/Lymphatus/libcaesium), created by Lymphatus. We are grateful for their work on the core compression library.
 
+For more information on Flutter development, check out the [online documentation](https://docs.flutter.dev), which offers tutorials, samples, and a full API reference.
