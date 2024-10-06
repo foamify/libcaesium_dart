@@ -8,10 +8,12 @@ libcaesium_dart provides Dart bindings for the libcaesium library, allowing Flut
 
 ## Features
 
-- Compress JPEG, PNG, and WebP images
+- Compress JPEG, PNG, and WebP images.
 - Maintain image quality while reducing file size
 - Cross-platform support (iOS, Android, Windows, macOS, Linux)
 - Easy integration with Flutter projects
+
+***Do note that it cannot convert image format. So if you input a JPEG image, you cannot output a WebP image.***
 
 ## Project Structure
 
