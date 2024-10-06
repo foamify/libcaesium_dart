@@ -1,6 +1,6 @@
 name: libcaesium_dart
 description: "A Flutter FFI plugin for libcaesium, a powerful image compression library written in Rust."
-version: 0.0.1
+version: 0.1.0
 homepage: https://github.com/foamify/libcaesium_dart
 
 environment:
