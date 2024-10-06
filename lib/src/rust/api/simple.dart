@@ -13,7 +13,7 @@ import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 /// * `input_path` - Image file input path
 /// * `output_path` - Output file path (must be put in an existing directory)
 /// * `quality` - Compression quality
-/// * `png_optimization_level` -  if optimization is true will set the level of oxipng optimization, from 1 to 6. Default 3.
+/// * `png_optimization_level` -  if optimization is true will set the level of oxipng optimization, from 0 to 6. Default 3.
 /// * `keep_metadata` - Keep metadata or discard
 /// * `optimize` - Optimize image size, don't use for webp, the format is tricky
 /// * `max_output_size` - (Optional) Maximum output size in bytes
